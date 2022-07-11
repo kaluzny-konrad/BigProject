@@ -3,12 +3,12 @@
     console.log("Hello");
 
     var $buyForm = $(".buy-form");
-    var $buyFormExit = $(".buy-form-exit");
-    var $loginToggle = $(".login-toggle");
+    var $buyFormExit = $(".js-buy-form-exit");
+    var $loginToggle = $(".js-login-toggle");
     var $loginForm = $(".login-form");
     var $loginFormExit = $(".login-form-exit");
 
-    $(".buyButton").each(function () {
+    $(".js-buy-button").each(function () {
         $(this).on("click", function () {
             console.log("Buying Item");
             $loginForm.hide();
@@ -40,7 +40,7 @@
         $blocker.hide();
     })
 
-    var $blocker = $(".blocker");
+    var $blocker = $(".js-blocker");
     $blocker.on("click", function () {
         $buyForm.hide();
         $loginForm.hide();

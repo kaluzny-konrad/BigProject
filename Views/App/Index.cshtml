@@ -2,7 +2,7 @@
     ViewBag.Title = "Home Page";
 }
 <div class="popup buy-form">
-    <p class="buy-form-exit exit-button">X</p>
+    <p class="js-buy-form-exit exit-button">X</p>
     <form>
         <div>
             <label>Name:</label>
@@ -25,73 +25,29 @@
         </div>
     </form>
 </div>
-<div class="blocker"></div>
+<div class="js-blocker blocker"></div>
 
 
 <content>
-    <div class="mug">
-        <div class="mug-content mug-img">
-            <img src="~/img/VanGogh.jpg" />
+    <div class="row">
+        <div class="product-box col-md-6">
+            <div class="product-img col-md-6">
+                <img src="~/img/VanGogh.jpg" />
+            </div>
+            <div class="product-info col-md-6">
+                <h3>Lorem ipsum</h3>
+                <ul>
+                    <li>Price: $9.99</li>
+                    <li>Artist: Van Gogh</li>
+                    <li>Title: Some title</li>
+                    <li>Description: Some description</li>
+                </ul>
+                <button class="js-buy-button btn btn-primary">Buy</button>
+            </div>
         </div>
-        <div class="mug-content mug-info">
-            <h3>Lorem ipsum</h3>
-            <ul>
-                <li>Price: $9.99</li>
-                <li>Artist: Van Gogh</li>
-                <li>Title: Some title</li>
-                <li>Description: Some description</li>
-            </ul>
-            <button class="buyButton">Buy</button>
-        </div>
+
     </div>
 
-    <div class="mug">
-        <div class="mug-content mug-img">
-            <img src="~/img/VanGogh.jpg" />
-        </div>
-        <div class="mug-content mug-info">
-            <h3>Lorem ipsum</h3>
-            <ul>
-                <li>Price: $9.99</li>
-                <li>Artist: Van Gogh</li>
-                <li>Title: Some title</li>
-                <li>Description: Some description</li>
-            </ul>
-            <button class="buyButton">Buy</button>
-        </div>
-    </div>
-
-    <div class="mug">
-        <div class="mug-content mug-img">
-            <img src="~/img/VanGogh.jpg" />
-        </div>
-        <div class="mug-content mug-info">
-            <h3>Lorem ipsum</h3>
-            <ul>
-                <li>Price: $9.99</li>
-                <li>Artist: Van Gogh</li>
-                <li>Title: Some title</li>
-                <li>Description: Some description</li>
-            </ul>
-            <button class="buyButton">Buy</button>
-        </div>
-    </div>
-
-    <div class="mug">
-        <div class="mug-content mug-img">
-            <img src="~/img/VanGogh.jpg" />
-        </div>
-        <div class="mug-content mug-info">
-            <h3>Lorem ipsum</h3>
-            <ul>
-                <li>Price: $9.99</li>
-                <li>Artist: Van Gogh</li>
-                <li>Title: Some title</li>
-                <li>Description: Some description</li>
-            </ul>
-            <button class="buyButton">Buy</button>
-        </div>
-    </div>
     <br style="clear:both" />
 
 </content>
