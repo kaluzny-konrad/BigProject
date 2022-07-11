@@ -1,0 +1,54 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Dutch Treat: @ViewBag.Title</title>
+    <link rel="stylesheet" href="~/css/site.css">
+</head>
+<body>
+    <nav>
+        <h1><a href="/">Dutch Treat</a></h1>
+        <menu>
+            <ul>
+                <li><p class="login-toggle">Login</p></li>
+                <li><a asp-controller="App" asp-action="Index">Home</a></li>
+                <li><a asp-controller="App" asp-action="Contact">Contact</a></li>
+                <li><a asp-controller="App" asp-action="About">About</a></li>
+            </ul>
+        </menu>
+    </nav>
+
+    <div class="popup login-form">
+        <p class="login-form-exit exit-button">X</p>
+        <form>
+            <div>
+                <label>Name:</label>
+                <input />
+            </div>
+            <div>
+                <label>Password:</label>
+                <input type="password" />
+            </div>
+            <div>
+                <input type="checkbox" />
+                <label>Remember me</label>
+            </div>
+            <div>
+                <input type="submit" value="Login" />
+            </div>
+        </form>
+    </div>
+    <div class="blocker"></div>
+
+    @RenderBody()
+
+    <footer>
+        <p>Site created by KK.</p>
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/js/index.js"></script>
+
+    @RenderSection("Scripts", false)
+</body>
+</html>

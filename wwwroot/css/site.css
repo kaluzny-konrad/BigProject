@@ -1,0 +1,247 @@
+﻿html {
+    margin: 0;
+    padding: 0;
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    background-color: #48808a;
+    font-family: Geneva, Verdana, sans-serif;
+}
+
+/* Menu */
+
+nav {
+    padding: 1em 0em;
+    background-color: #48808a;
+    height: 3em;
+    position: sticky;
+    top: 0;
+}
+
+nav a {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+nav h1 {
+    margin: 0;
+    margin-top: 0.5em;
+    margin-left: 1em;
+    color: #ffffff;
+    float: left;
+}
+
+nav ul {
+    display: flex;
+    justify-content: flex-end;
+    box-sizing: border-box;
+    margin: 0;
+    float: right;
+}
+
+menu ul li {
+    list-style: none;
+    margin-right: 1em;
+    float: left;
+    color: #ffffff;
+}
+
+menu ul li::after {
+    content: " |"
+}
+
+menu ul li:last-of-type::after {
+    content: ""
+}
+
+menu ul li a, menu ul li p {
+    padding-right: 1em;
+}
+
+menu ul li p {
+    float: left;
+    margin: 0;
+    cursor: pointer;
+}
+
+/* Overall content */
+content {
+    background-color: #f6f6f6;
+    margin-left: 1em;
+    display: block;
+    margin: 0;
+    padding: 2em;
+    display: block;
+    min-height: 75vh;
+}
+
+/* Footer */
+footer {
+    width: 100%;
+    height: 3em;
+    background-color: #48808a;
+    color: #fff;
+    position: relative;
+    float:left;
+}
+
+footer p {
+    margin: 1em;
+}
+
+/* Home page */
+
+.mug {
+    background-color: #fff;
+    height: 15em;
+    width: 41em;
+    padding: 1em;
+    margin-bottom: 1em;
+    margin-right: 1em;
+    float:left;
+}
+
+.mug-content {
+    float: left;
+}
+
+.mug-img img {
+    height: 15em;
+    width: auto;
+}
+
+.mug-info {
+    margin-left: 2em;
+}
+
+.mug-info h3 {
+    color: #48808a;
+    font-size: 1.5em;
+}
+
+.mug-content button {
+    margin-top: 0.5em;
+    padding: 0.5em 2em;
+    font-size: 1em;
+    font-weight: bolder;
+    background-color: #48808a;
+    color: #ffffff;
+    border: none;
+    border-radius: 0.5em;
+}
+
+.mug-content button:hover {
+    background-color: #2c707c;
+    cursor: pointer;
+}
+
+
+/* Popups */
+.popup {
+    display: none;
+    margin: 0;
+    width: 100%;
+    position: fixed;
+    background-color: #ffffff;
+    z-index: 100;
+    -webkit-box-shadow: 0px 20px 18px -25px rgba(0, 0, 0, 1);
+    -moz-box-shadow: 0px 20px 18px -25px rgba(0, 0, 0, 1);
+    box-shadow: 0px 20px 18px -25px rgba(0, 0, 0, 1);
+}
+
+.blocker {
+    display: none;
+    position: fixed;
+    z-index: 0;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+}
+
+.exit-button {
+    right: 2em;
+    cursor: pointer;
+    position: absolute;
+}
+
+.popup input[type=submit] {
+    cursor: pointer;
+}
+
+/* login form */
+.login-form form {
+    display: inline-block;
+    padding: 1em;
+    margin-left: 5em;
+}
+
+.login-form form div {
+    float: left;
+}
+
+.login-form div {
+    margin: 1em;
+}
+
+.login-form input {
+    width: 10em;
+}
+
+.login-form label {
+    width: 8em;
+    display: inline-block;
+}
+
+.login-form input[type=checkbox], 
+.login-form input[type=submit] {
+    width: auto;
+}
+
+
+/* Buy form */
+.buy-form form {
+    display: inline-block;
+    padding: 1em;
+    margin-left: 5em;
+}
+
+.buy-form div {
+    margin: 1em;
+}
+
+.buy-form form div {
+    float: left;
+}
+
+.buy-form label {
+    width: 8em;
+    display: inline-block;
+}
+
+.buy-form input[type=checkbox],
+.buy-form input[type=submit] {
+    width: auto;
+}
+
+/* Contact */
+
+.contact-form {
+    margin-top: 1em;
+}
+
+.contact-form div {
+    margin-top: 1em;
+}
+
+.contact-form label{
+    margin-right: 10px;
+}
+
+.contact-form input, .contact-form textarea {
+    width: 20em;
+}
