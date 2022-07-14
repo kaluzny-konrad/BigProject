@@ -28,7 +28,7 @@ namespace BigProject.Controllers
         }
 
         [HttpPost("contact")]
-        public IActionResult Contact(ContactViewModel model)
+        public IActionResult Contact(ContactModel model)
         {
             if(ModelState.IsValid)
             {

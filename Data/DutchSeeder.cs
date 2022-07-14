@@ -20,7 +20,6 @@ namespace BigProject.Data
 
             if (!_context.Products.Any())
                 CreateSampleData();
-
         }
 
         private void CreateSampleData()
@@ -28,7 +27,9 @@ namespace BigProject.Data
             var filePath = Path.Combine(_environment.ContentRootPath, "Data/art.json");
             var json = File.ReadAllText(filePath);
             var products = JsonSerializer.Deserialize<IEnumerable<Product>>(json);
-            _context.Products.AddRange(products);
+            if (products is null)
+                return;
+            _context.Products?.AddRange(products);
             var order = new Order()
             {
                 OrderDate = DateTime.Now,
@@ -43,8 +44,19 @@ namespace BigProject.Data
                     }
                 }
             };
-            _context.Orders.Add(order);
+            _context.Orders?.Add(order);
             _context.SaveChanges();
+        }
+
+        public static bool IsSeeding(string[] args)
+            => (args.Length == 1 && args[0].ToLower() == "/seed");
+
+        public static void SeedDb(IServiceProvider serviceProvider)
+        {
+            var scopeFactory = serviceProvider.GetService<IServiceScopeFactory>();
+            using var scope = scopeFactory?.CreateScope();
+            var seeder = scope?.ServiceProvider.GetService<DutchSeeder>();
+            seeder?.Seed();
         }
     }
 }

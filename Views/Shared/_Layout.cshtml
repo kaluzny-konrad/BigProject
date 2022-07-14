@@ -8,52 +8,59 @@
     <link rel="stylesheet" href="~/css/site.css">
 </head>
 <body>
-    <header class="container-fluid bg-dark">
-        <nav class="navbar navbar-dark navbar-expand-md">
-            <h1 class="navbar-brand">
-                <i class="fas fa-paint-brush"></i> Dutch Treat
-            </h1>
-            <button class="navbar-toggler" 
-                    type="button"
-                    data-toggle="collapse" 
-                    data-target="#theMenu"
-                    aria-controls="navbarSupportedContent" 
-                    aria-expanded="false" 
-                    aria-label="Toggle navigation"
-                    >
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="theMenu">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" 
-                            asp-controller="App" 
-                            asp-action="Index">Home
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" 
-                            asp-controller="App" 
-                            asp-action="Contact">Contact
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" 
-                            asp-controller="App" 
-                            asp-action="About">About
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </nav>
-    </header>
-
-    @RenderBody()
-
-    <footer class="container-fluid text-center">
-        Site created by KK.
-    </footer>
-
+    <div class="row">
+        <header class="container-fluid bg-dark">
+            <nav class="navbar navbar-dark navbar-expand-md">
+                <h1 class="navbar-brand">
+                    <i class="fas fa-paint-brush"></i> Dutch Treat
+                </h1>
+                <button class="navbar-toggler" 
+                        type="button"
+                        data-toggle="collapse" 
+                        data-target="#theMenu"
+                        aria-controls="navbarSupportedContent" 
+                        aria-expanded="false" 
+                        aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="theMenu">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" 
+                                asp-controller="App" 
+                                asp-action="Index">Home
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" 
+                                asp-controller="App" 
+                                asp-action="Contact">Contact
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" 
+                                asp-controller="App" 
+                                asp-action="About">About
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" 
+                                asp-controller="App" 
+                                asp-action="Shop">Shop
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+        <section class="container">
+            <h2 class="text-center">@ViewBag.Title</h2>
+            @RenderBody()
+        </section>
+        <footer class="container-fluid text-center">
+            Site created by KK.
+        </footer>
+    </div>
 
     <script
       src="https://code.jquery.com/jquery-3.6.0.min.js"

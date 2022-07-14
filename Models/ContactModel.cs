@@ -2,7 +2,7 @@
 
 namespace BigProject.Models
 {
-    public class ContactViewModel
+    public class ContactModel
     {
         [Required]
         [MinLength(5)]

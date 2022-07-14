@@ -1,7 +1,6 @@
 using BigProject.Data;
 using BigProject.Services;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
+using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,24 +13,21 @@ builder.Host.ConfigureAppConfiguration((hostingContext, config) =>
 });
 
 builder.Services.AddControllersWithViews()
-    .AddRazorRuntimeCompilation();
+    .AddRazorRuntimeCompilation()
+    .AddNewtonsoftJson(cfg => 
+        cfg.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+    );
 builder.Services.AddRazorPages();
+
 builder.Services.AddDbContext<DutchContext>();
 builder.Services.AddTransient<DutchSeeder>();
+builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
 builder.Services.AddScoped<IDutchRepository, DutchRepository>();
+
 builder.Services.AddTransient<IMailService, NullMailService>();
 
-var serviceProvider = builder.Services.BuildServiceProvider();
-
-if (args.Length == 1 && args[0].ToLower() == "/seed")
-{
-    var scopeFactory = serviceProvider.GetService<IServiceScopeFactory>();
-    using (var scope = scopeFactory?.CreateScope())
-    {
-        var seeder = scope?.ServiceProvider.GetService<DutchSeeder>();
-        seeder?.Seed();
-    }
-}
+if (DutchSeeder.IsSeeding(args))
+    DutchSeeder.SeedDb(builder.Services.BuildServiceProvider());
 
 var app = builder.Build();
 if (app.Environment.IsDevelopment())
@@ -50,5 +46,5 @@ app.UseEndpoints(endpoints =>
         new { controller = "App", action = "Index" });
 });
 
-if (!(args.Length == 1 && args[0].ToLower() == "/seed"))
+if (!DutchSeeder.IsSeeding(args))
     app.Run();

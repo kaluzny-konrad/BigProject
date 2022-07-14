@@ -5,20 +5,20 @@ namespace BigProject.Data
 {
     public class DutchContext : DbContext
     {
-        private readonly IConfiguration _config;
+        private readonly IConfiguration config;
 
         public DutchContext(IConfiguration config)
         {
-            _config = config;
+            this.config = config;
         }
 
-        public DbSet<Product> Products { get; set; }
-        public DbSet<Order> Orders { get; set; }
+        public DbSet<Product>? Products { get; set; }
+        public DbSet<Order>? Orders { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             base.OnConfiguring(optionsBuilder);
-            optionsBuilder.UseSqlServer(_config["ConnectionStrings:DutchContextDb"]);
+            optionsBuilder.UseSqlServer(config["ConnectionStrings:DutchContextDb"]);
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace BigProject.Data.Entities;
 
-namespace BigProject.Data.Entities
+public class Product
 {
-  public class Product
-  {
     public int Id { get; set; }
     public string Category { get; set; }
     public string Size { get; set; }
@@ -20,5 +14,4 @@ namespace BigProject.Data.Entities
     public DateTime ArtistBirthDate { get; set; }
     public DateTime ArtistDeathDate { get; set; }
     public string ArtistNationality { get; set; }
-  }
 }
