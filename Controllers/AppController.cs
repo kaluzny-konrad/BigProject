@@ -1,4 +1,5 @@
-﻿using BigProject.Models;
+﻿using BigProject.Data;
+using BigProject.Models;
 using BigProject.Services;
 using Microsoft.AspNetCore.Mvc;
 
@@ -6,11 +7,13 @@ namespace BigProject.Controllers
 {
     public class AppController : Controller
     {
-        private readonly IMailService _mailService;
+        private readonly IMailService mailService;
+        private readonly IDutchRepository repository;
 
-        public AppController(IMailService mailService)
+        public AppController(IMailService mailService, IDutchRepository repository)
         {
-            _mailService = mailService;
+            this.mailService = mailService;
+            this.repository = repository;
         }
 
         public IActionResult Index()
@@ -29,7 +32,7 @@ namespace BigProject.Controllers
         {
             if(ModelState.IsValid)
             {
-                _mailService.SendMessage("konrad.kaluzny@hotmail.com", model.Subject, 
+                mailService.SendMessage("konrad.kaluzny@hotmail.com", model.Subject, 
                     $"From: {model.Name} - {model.Email}, Message: {model.Message}");
                 ViewBag.UserMessage = "Mail Sent";
                 ModelState.Clear();
@@ -41,6 +44,12 @@ namespace BigProject.Controllers
         public IActionResult About()
         {
             return View();
+        }
+
+        public IActionResult Shop()
+        {
+            var results = repository.GetAllProducts();
+            return View(results);
         }
     }
 }

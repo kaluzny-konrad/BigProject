@@ -1,53 +1,50 @@
 ﻿@{
     ViewBag.Title = "Home Page";
 }
-<div class="popup buy-form">
-    <p class="js-buy-form-exit exit-button">X</p>
-    <form>
-        <div>
-            <label>Name:</label>
-            <input />
-        </div>
-        <div>
-            <label>Email:</label>
-            <input type="email" />
-        </div>
-        <div>
-            <label>Subject:</label>
-            <input type="text" />
-        </div>
-        <div>
-            <label>Message:</label>
-            <textarea rows="4"></textarea>
-        </div>
-        <div>
-            <input type="submit" value="Send Message" />
-        </div>
-    </form>
-</div>
-<div class="js-blocker blocker"></div>
+<div class="row">
 
-
-<content>
-    <div class="row">
-        <div class="product-box col-md-6">
-            <div class="product-img col-md-6">
-                <img src="~/img/VanGogh.jpg" />
-            </div>
-            <div class="product-info col-md-6">
-                <h3>Lorem ipsum</h3>
-                <ul>
-                    <li>Price: $9.99</li>
-                    <li>Artist: Van Gogh</li>
-                    <li>Title: Some title</li>
-                    <li>Description: Some description</li>
-                </ul>
-                <button class="js-buy-button btn btn-primary">Buy</button>
-            </div>
+    <div class="col-md-6">
+        <div class="product-box">
+            <img src="~/img/VanGogh.jpg" />
+            <h3>Lorem ipsum</h3>
+            <ul>
+                <li>Price: $9.99</li>
+                <li>Artist: Van Gogh</li>
+                <li>Title: Some title</li>
+                <li>Description: Some description</li>
+            </ul>
+            <button class="js-buy-button btn btn-primary">Buy</button>
         </div>
-
     </div>
 
-    <br style="clear:both" />
+    <div class="col-md-6">
+        <div class="card card-body bg-light buy-form" style="display:none;">
+            <form method="post">
+                <div class="form-group">
+                    <label>Name:</label>
+                    <input class="form-control"/>
+                </div>
 
-</content>
+                <div class="form-group">
+                    <label>Email:</label>
+                    <input type="email" class="form-control"/>
+                </div>
+
+                <div class="form-group">
+                    <label>Subject:</label>
+                    <input type="text" class="form-control"/>
+                </div>
+
+                <div class="form-group">
+                    <label>Message:</label>
+                    <textarea rows="4" class="form-control"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <input type="submit" value="Send Message" class="btn btn-primary"/>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div>

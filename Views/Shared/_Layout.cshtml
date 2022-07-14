@@ -4,12 +4,15 @@
     <meta charset="utf-8" />
     <title>Dutch Treat: @ViewBag.Title</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="~/lib/fortawesome/fontawesome-free/css/all.min.css">
     <link rel="stylesheet" href="~/css/site.css">
 </head>
 <body>
-    <header class="container-fluid">
+    <header class="container-fluid bg-dark">
         <nav class="navbar navbar-dark navbar-expand-md">
-            <h1 class="navbar-brand">Dutch Treat</h1>
+            <h1 class="navbar-brand">
+                <i class="fas fa-paint-brush"></i> Dutch Treat
+            </h1>
             <button class="navbar-toggler" 
                     type="button"
                     data-toggle="collapse" 
@@ -22,9 +25,6 @@
             </button>
             <div class="collapse navbar-collapse" id="theMenu">
                 <ul class="navbar-nav mr-auto">
-                    <li class="nav-item">
-                        <p class="nav-link js-login-toggle">Log In</p>
-                        </li>
                     <li class="nav-item">
                         <a class="nav-link" 
                             asp-controller="App" 
@@ -48,39 +48,19 @@
         </nav>
     </header>
 
-    <div class="popup login-form">
-        <p class="login-form-exit exit-button">X</p>
-        <form>
-            <div>
-                <label>Name:</label>
-                <input />
-            </div>
-            <div>
-                <label>Password:</label>
-                <input type="password" />
-            </div>
-            <div>
-                <input type="checkbox" />
-                <label>Remember me</label>
-            </div>
-            <div>
-                <input type="submit" value="Login" class="btn btn-primary"/>
-            </div>
-        </form>
-    </div>
-    <div class="js-blocker blocker"></div>
-
     @RenderBody()
 
-    <footer class="container-fluid">
-        <div class="text-center"><p>Site created by KK.</p></div>
+    <footer class="container-fluid text-center">
+        Site created by KK.
     </footer>
+
 
     <script
       src="https://code.jquery.com/jquery-3.6.0.min.js"
       integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
       crossorigin="anonymous">
-  </script>
+    </script>
+
     <script 
         src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js" 
         integrity="sha512-2rNj2KJ+D8s1ceNasTIex6z4HWyOnEYLVC3FigGOmyQCZc2eBXKgOxQmo3oKLHyfcj53uz4QMsRCWNbLd32Q1g==" 

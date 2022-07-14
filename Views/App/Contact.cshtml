@@ -6,38 +6,40 @@
     <script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
     <script src="~/lib/jquery-validation-unobtrusive/dist/jquery.validate.unobtrusive.js"></script>
 }
-<content>
-This is page with contact.
-Lets contact with us!
 
-<div class="contact-form">
-    <form method="post">
-        <div><label asp-for="Name">Name:</label>
-        </div>
-        <input asp-for="Name"/>
-        <span asp-validation-for="Name"></span>
+<h2 class="text-center">Contact Us!</h2>
 
-        <div><label asp-for="Email">Email:</label>
-        </div>
-            <input type="email" asp-for="Email" />
-        <span asp-validation-for="Email"></span>
+<div class="contact-form col-md-6 offset-md-3">
+    <div class="card card-body bg-light">
+        <form method="post">
+            <div class="form-group">
+                <label asp-for="Name">Name:</label>
+                <input asp-for="Name" class="form-control"/>
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
 
-        <div><label asp-for="Subject">Subject:</label>
-        </div>
-            <input type="text" asp-for="Subject"/>
-        <span asp-validation-for="Subject"></span>
+            <div class="form-group">
+                <label asp-for="Email">Email:</label>
+                <input type="email" asp-for="Email"  class="form-control"/>
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div>
+                <label asp-for="Subject">Subject:</label>
+                <input type="text" asp-for="Subject" class="form-control"/>
+                <span asp-validation-for="Subject" class="text-danger"></span>
+            </div>
 
-        <div><label asp-for="Message">Message:</label>
-        </div>
-            <textarea rows="4" asp-for="Message"></textarea>
-        <span asp-validation-for="Message"></span>
+            <div class="form-group">
+                <label asp-for="Message">Message:</label>
+                <textarea rows="4" asp-for="Message" class="form-control"></textarea>
+                <span asp-validation-for="Message" class="text-danger"></span>
+            </div>
 
-        <div>
-            <input type="submit" value="Send Message" />
-        </div>
-        <div asp-validation-summary="ModelOnly"></div>
-        <div>@ViewBag.UserMessage</div>
-    </form>
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary"><i class="fas fa-envelope-open"></i> Send Message</button>
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div  class="text-success">@ViewBag.UserMessage</div>
+            </div>
+        </form>
+    </div>
 </div>
-
-</content>

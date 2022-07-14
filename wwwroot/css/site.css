@@ -1,31 +1,9 @@
-﻿body {
-    font-family: Geneva, Verdana, sans-serif;
-}
-
-.btn-primary {
-    background-color: #48808a;
-    border-color: #286e7a;
-}
-
-.btn-primary:hover {
-    background-color: #286e7a;
-    border-color: #286e7a;
-}
-
-/* nav */
+﻿/* nav */
 header {
-    background-color: #48808a;
-    position: sticky;
-    top: 0;
-}
-
-nav ul li, nav a {
-    color: #ffffff;
-    text-decoration: none;
-}
-
-nav a:hover, nav p:hover {
-    color: #b5dbe1;
+    /* STICKY
+        position: sticky;
+        top: 0;
+    */
 }
 
 nav ul li p, nav ul li a {
@@ -33,130 +11,22 @@ nav ul li p, nav ul li a {
     cursor: pointer;
 }
 
+/* Headers */
+h2 {
+    margin: 0.5em 0;
+}
+
 /* Footer */
 footer {
-    background-color: #48808a;
-    color: #fff;
-    float:left;
+    padding: 1em 0;
 }
 
-footer p {
+/* Forms */
+.card-body {
     margin: 1em;
 }
 
-/* Home page */
-
+/* Product box */
 .product-box {
-    background-color: #fff;
-}
-
-.product-info h3 {
-    color: #48808a;
-    font-size: 1.5em;
-}
-
-/* Popups */
-.popup {
-    display: none;
-    margin: 0;
-    width: 100%;
-    position: fixed;
-    background-color: #ffffff;
-    z-index: 100;
-    -webkit-box-shadow: 0px 20px 18px -25px rgba(0, 0, 0, 1);
-    -moz-box-shadow: 0px 20px 18px -25px rgba(0, 0, 0, 1);
-    box-shadow: 0px 20px 18px -25px rgba(0, 0, 0, 1);
-}
-
-.blocker {
-    display: none;
-    position: fixed;
-    z-index: 0;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-}
-
-.exit-button {
-    right: 2em;
-    margin-top: 1em;
-    cursor: pointer;
-    position: absolute;
-}
-
-.popup input[type=submit] {
-    cursor: pointer;
-}
-
-/* login form */
-.login-form form {
-    display: inline-block;
-    padding: 1em;
-    margin-left: 5em;
-}
-
-.login-form form div {
-    float: left;
-}
-
-.login-form div {
     margin: 1em;
-}
-
-.login-form input {
-    width: 10em;
-}
-
-.login-form label {
-    width: 8em;
-    display: inline-block;
-}
-
-.login-form input[type=checkbox], 
-.login-form input[type=submit] {
-    width: auto;
-}
-
-
-/* Buy form */
-.buy-form form {
-    display: inline-block;
-    padding: 1em;
-    margin-left: 5em;
-}
-
-.buy-form div {
-    margin: 1em;
-}
-
-.buy-form form div {
-    float: left;
-}
-
-.buy-form label {
-    width: 8em;
-    display: inline-block;
-}
-
-.buy-form input[type=checkbox],
-.buy-form input[type=submit] {
-    width: auto;
-}
-
-/* Contact */
-.contact-form {
-    margin-top: 1em;
-}
-
-.contact-form div {
-    margin-top: 1em;
-}
-
-.contact-form label{
-    margin-right: 10px;
-}
-
-.contact-form input, .contact-form textarea {
-    width: 20em;
 }
