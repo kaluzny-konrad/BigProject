@@ -2,7 +2,9 @@ using BigProject.Data;
 using BigProject.Data.Entities;
 using BigProject.Services;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.IdentityModel.Tokens;
 using System.Reflection;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -23,9 +25,26 @@ builder.Services.AddRazorPages();
 
 builder.Services.AddDbContext<DutchContext>();
 builder.Services.AddTransient<IMailService, NullMailService>();
-builder.Services.AddIdentity<StoreUser, IdentityRole>()
-        .AddEntityFrameworkStores<DutchContext>()
-        .AddDefaultTokenProviders();
+builder.Services.AddIdentity<StoreUser, IdentityRole>(cfg =>
+    {
+        cfg.User.RequireUniqueEmail = true;
+    })
+    .AddEntityFrameworkStores<DutchContext>()
+    .AddDefaultTokenProviders();
+
+builder.Services.AddAuthentication()
+    .AddCookie()
+    .AddJwtBearer(cfg =>
+    {
+        cfg.TokenValidationParameters = new TokenValidationParameters()
+        {
+            ValidIssuer = builder.Configuration.GetValue<string>("Token:Issuer"),
+            ValidAudience = builder.Configuration.GetValue<string>("Token:Audience"),
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(
+                builder.Configuration.GetValue<string>("Token:Key")
+            ))
+        };
+    });
 builder.Services.AddTransient<DutchSeeder>();
 builder.Services.AddScoped<IDutchRepository, DutchRepository>();
 builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
@@ -49,6 +68,8 @@ else
 
 app.UseStaticFiles();
 app.UseRouting();
+app.UseAuthentication();
+app.UseAuthorization();
 app.UseEndpoints(endpoints =>
 {
     endpoints.MapRazorPages();

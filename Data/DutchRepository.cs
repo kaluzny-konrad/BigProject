@@ -32,13 +32,35 @@ namespace BigProject.Data
             }
         }
 
-        public Order GetOrderById(int id)
+        public IEnumerable<Order> GetAllOrdersByUser(string username, bool includeItems)
+        {
+            try
+            {
+                if (includeItems)
+                    return context.Orders
+                        .Where(o => o.User.UserName == username)
+                        .Include(o => o.Items)
+                        .ThenInclude(i => i.Product)
+                        .ToList();
+                else
+                    return context.Orders
+                        .Where(o => o.User.UserName == username)
+                        .ToList();
+            }
+            catch (Exception ex)
+            {
+                logger.LogError("Failed to get all orders: {exception}", ex);
+                return null;
+            }
+        }
+
+        public Order GetOrderById(string username, int id)
         {
             try
             {
                 return context.Orders.Include(o => o.Items)
                                      .ThenInclude(i => i.Product)
-                                     .Where(o => o.Id == id)
+                                     .Where(o => o.Id == id && o.User.UserName == username)
                                      .FirstOrDefault();
             }
             catch (Exception ex)
@@ -47,6 +69,7 @@ namespace BigProject.Data
                 return null;
             }
         }
+
 
         public IEnumerable<Product> GetAllProducts()
         {
@@ -73,6 +96,7 @@ namespace BigProject.Data
                 return null;
             }
         }
+
 
         public bool SaveAll()
         {
