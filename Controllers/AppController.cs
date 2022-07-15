@@ -1,6 +1,7 @@
 ﻿using BigProject.Data;
 using BigProject.Models;
 using BigProject.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BigProject.Controllers
@@ -46,6 +47,7 @@ namespace BigProject.Controllers
             return View();
         }
 
+        [Authorize]
         public IActionResult Shop()
         {
             var results = repository.GetAllProducts();

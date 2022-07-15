@@ -1,9 +1,10 @@
 ﻿using BigProject.Data.Entities;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace BigProject.Data
 {
-    public class DutchContext : DbContext
+    public class DutchContext : IdentityDbContext<StoreUser>
     {
         private readonly IConfiguration config;
 

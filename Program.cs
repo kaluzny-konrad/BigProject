@@ -1,5 +1,7 @@
 using BigProject.Data;
+using BigProject.Data.Entities;
 using BigProject.Services;
+using Microsoft.AspNetCore.Identity;
 using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -20,14 +22,24 @@ builder.Services.AddControllersWithViews()
 builder.Services.AddRazorPages();
 
 builder.Services.AddDbContext<DutchContext>();
-builder.Services.AddTransient<DutchSeeder>();
-builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
-builder.Services.AddScoped<IDutchRepository, DutchRepository>();
-
 builder.Services.AddTransient<IMailService, NullMailService>();
+builder.Services.AddIdentity<StoreUser, IdentityRole>()
+        .AddEntityFrameworkStores<DutchContext>()
+        .AddDefaultTokenProviders();
+builder.Services.AddTransient<DutchSeeder>();
+builder.Services.AddScoped<IDutchRepository, DutchRepository>();
+builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
 
-if (DutchSeeder.IsSeeding(args))
-    DutchSeeder.SeedDb(builder.Services.BuildServiceProvider());
+var serviceProvider = builder.Services.BuildServiceProvider();
+var scopeFactory = serviceProvider.GetService<IServiceScopeFactory>();
+using (var scope = scopeFactory.CreateScope())
+{
+    if (DutchSeeder.IsSeeding(args))
+    {
+        var seeder = scope.ServiceProvider.GetService<DutchSeeder>();
+        seeder.SeedAsync().Wait();
+    }
+}
 
 var app = builder.Build();
 if (app.Environment.IsDevelopment())

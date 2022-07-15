@@ -1,62 +1,83 @@
 ﻿using BigProject.Data.Entities;
+using Microsoft.AspNetCore.Identity;
 using System.Text.Json;
 
 namespace BigProject.Data
 {
     public class DutchSeeder
     {
-        private readonly DutchContext _context;
-        private readonly IWebHostEnvironment _environment;
+        private readonly DutchContext context;
+        private readonly IWebHostEnvironment environment;
+        private readonly UserManager<StoreUser> userManager;
 
-        public DutchSeeder(DutchContext context, IWebHostEnvironment environment)
+        public DutchSeeder(DutchContext context,
+                           IWebHostEnvironment environment,
+                           UserManager<StoreUser> userManager)
         {
-            _context = context;
-            _environment = environment;
+            this.context = context;
+            this.environment = environment;
+            this.userManager = userManager;
         }
 
-        public void Seed()
+        public async Task SeedAsync()
         {
-            _context.Database.EnsureCreated();
+            context.Database.EnsureCreated();
 
-            if (!_context.Products.Any())
-                CreateSampleData();
+            StoreUser user = await userManager.FindByEmailAsync("konrad.kaluzny@hotmail.com");
+            if (user == null)
+            {
+                user = new StoreUser()
+                {
+                    FirstName = "Konrad",
+                    LastName = "Kaluzny",
+                    Email = "konrad.kaluzny@hotmail.com",
+                    UserName = "konrad.kaluzny@hotmail.com"
+                };
+
+                var result = await userManager.CreateAsync(user, "P@ssw0rd!");
+                if (!result.Succeeded) 
+                    throw new InvalidOperationException("Could not create new user in seeder");
+            }
+
+            if (!context.Products.Any())
+                CreateSampleData(user);
         }
 
-        private void CreateSampleData()
+        private void CreateSampleData(StoreUser user)
         {
-            var filePath = Path.Combine(_environment.ContentRootPath, "Data/art.json");
+            var filePath = Path.Combine(environment.ContentRootPath, "Data/art.json");
             var json = File.ReadAllText(filePath);
             var products = JsonSerializer.Deserialize<IEnumerable<Product>>(json);
             if (products is null)
                 return;
-            _context.Products?.AddRange(products);
-            var order = new Order()
+            context.Products?.AddRange(products);
+
+            var order = context.Orders.Where(o => o.Id == 1).FirstOrDefault();
+            if (order == null)
             {
-                OrderDate = DateTime.Now,
-                OrderNumber = "1000",
-                Items = new List<OrderItem>()
+                order = new Order()
                 {
-                    new OrderItem()
-                    {
-                        Product = products.First(),
-                        Quantity = 5,
-                        UnitPrice = products.First().Price
-                    }
+                    OrderDate = DateTime.Now,
+                    OrderNumber = "1000"
+                };
+            }
+
+            order.User = user;
+            order.Items = new List<OrderItem>()
+            {
+                new OrderItem()
+                {
+                    Product = products.First(),
+                    Quantity = 5,
+                    UnitPrice = products.First().Price
                 }
             };
-            _context.Orders?.Add(order);
-            _context.SaveChanges();
+
+            context.Orders?.Add(order);
+            context.SaveChanges();
         }
 
         public static bool IsSeeding(string[] args)
             => (args.Length == 1 && args[0].ToLower() == "/seed");
-
-        public static void SeedDb(IServiceProvider serviceProvider)
-        {
-            var scopeFactory = serviceProvider.GetService<IServiceScopeFactory>();
-            using var scope = scopeFactory?.CreateScope();
-            var seeder = scope?.ServiceProvider.GetService<DutchSeeder>();
-            seeder?.Seed();
-        }
     }
 }
