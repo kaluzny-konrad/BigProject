@@ -13,6 +13,7 @@ public class DutchMappingProfile : Profile
             .ReverseMap();
 
         CreateMap<OrderItem, OrderItemModel>()
-            .ReverseMap();
+            .ReverseMap()
+            .ForMember(m => m.Product, opt => opt.Ignore());
     }
 }

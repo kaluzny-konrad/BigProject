@@ -47,7 +47,6 @@ namespace BigProject.Controllers
             return View();
         }
 
-        [Authorize]
         public IActionResult Shop()
         {
             var results = repository.GetAllProducts();
